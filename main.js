@@ -40,9 +40,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 <img src="${product.thumbnail}" alt="${product.title}">
                 <h3>${product.title}</h3>
                 <p>Price: $${product.price}</p>
-                <p>Discount: ${product.discount}%</p>
+                <p>Discount: ${product.discountPercentage}%</p>
                 <p>Category: ${product.category}</p>
                 <p>Stock: ${product.stock}</p>
+                <a href="product-details.html?id=${product.id}">View Details</a>
             `;
 
             productListElement.appendChild(productCard);
