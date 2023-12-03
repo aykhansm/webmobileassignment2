@@ -5,6 +5,48 @@ body {
     background-color: #f4f4f4;
 }
 
+
+header {
+    background-color: #3498db;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#searchInput {
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#categoryFilter {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+}
+
+#categoryFilter:hover {
+    cursor: pointer;
+    background-color: #ecf0f1;
+}
+
+#categoryFilter option {
+    background-color: #fff;
+    color: #333;
+}
+
+#categoryFilter option:hover {
+    background-color: #ecf0f1;
+}
+
+
 .product-list {
     display: flex;
     flex-wrap: wrap;
@@ -27,7 +69,7 @@ body {
 
 .product-card img {
     max-width: 100%;
-    height: auto;
+    max-height: 200px;
     margin-bottom: 10px;
 }
 

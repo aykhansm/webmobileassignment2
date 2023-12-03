@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const productListElement = document.getElementById("productList");
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+
+    let products;
 
     const apiUrl = "https://dummyjson.com/products";
 
@@ -11,8 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
         })
         .then(data => {
-            const products = data.products;
-
+            products = data.products;
+            populateCategoryFilter(products);
             displayProducts(products);
         })
         .catch(error => {
@@ -20,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     function displayProducts(products) {
-        productListElement.innerHTML = ""; 
+        productListElement.innerHTML = "";
 
         if (!Array.isArray(products)) {
             console.error('Invalid data format:', products);
@@ -48,5 +52,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
             productListElement.appendChild(productCard);
         });
+    }
+
+    function populateCategoryFilter(products) {
+        const categories = [...new Set(products.map(product => product.category))];
+        categories.forEach(category => {
+            const option = document.createElement("option");
+            option.value = category;
+            option.textContent = category;
+            categoryFilter.appendChild(option);
+        });
+    }
+
+    searchInput.addEventListener("input", handleSearch);
+    categoryFilter.addEventListener("change", handleFilter);
+
+    function handleSearch() {
+        const searchTerm = searchInput.value.toLowerCase();
+        fetch(`https://dummyjson.com/products/search?q=${searchTerm}`)
+            .then(response => response.json())
+            .then(data => {
+                displayProducts(data.products);
+            })
+            .catch(error => {
+                console.error('Error fetching search results:', error);
+            });
+    }
+
+    function handleFilter() {
+        const selectedCategory = categoryFilter.value;
+        fetch(`https://dummyjson.com/products/category/${selectedCategory}`)
+            .then(response => response.json())
+            .then(data => {
+                displayProducts(data.products);
+            })
+            .catch(error => {
+                console.error('Error fetching category results:', error);
+            });
     }
 });

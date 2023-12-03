@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <h2>${product.title}</h2>
                 <p class="price">Price: $${product.price}</p>
                 <p>Discount: ${product.discountPercentage}%</p>
+                <p>Rating: ${product.rating}/5</p>
                 <p>Category: ${product.category}</p>
                 <p>Stock: ${product.stock}</p>
             </div>
