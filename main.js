@@ -115,31 +115,30 @@ document.addEventListener("DOMContentLoaded", function () {
         const paginationContainer = document.createElement("div");
         paginationContainer.classList.add("pagination");
     
-        const backwardButton = createPaginationButton("<", () => {
+        const backwardButton = document.createElement("button");
+        backwardButton.textContent = "<";
+        backwardButton.addEventListener("click", () => {
             if (currentPage > 1) {
                 currentPage--;
                 renderProducts(products, currentPage);
-               
             }
         });
         paginationContainer.appendChild(backwardButton);
-    
-        const forwardButton = createPaginationButton(">", () => {
+
+        const forwardButton = document.createElement("button");
+        forwardButton.textContent = ">";
+        forwardButton.addEventListener("click", () => {
             if (currentPage < totalPages) {
                 currentPage++;
                 renderProducts(products, currentPage);
             }
         });
         paginationContainer.appendChild(forwardButton);
-    
+
+        
         document.body.appendChild(paginationContainer);
     
-        }
+     }
 
-    function createPaginationButton(label, clickHandler) {
-        const button = document.createElement("button");
-        button.textContent = label;
-        button.addEventListener("click", clickHandler);
-        return button;
-    }
+    
 });
